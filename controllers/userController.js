@@ -3,13 +3,7 @@ const { User, Thought } = require('../models');
 const userController = {
 	// Get All
 	getAllUser(req, res) {
-		User.find({})
-			.populate({
-				path: 'friends',
-				select: '-__v',
-			})
-			.select('-__v')
-			.sort({ _id: -1 })
+		Thought.find({})
 			.then((dbUserData) => res.json(dbUserData))
 			.catch((err) => {
 				console.log(err);
@@ -27,7 +21,6 @@ const userController = {
 				path: 'friends',
 				select: '-__v',
 			})
-			.select('-__v')
 			.then((dbUserData) => {
 				if (!dbUserData) {
 					return res.status(404).json({ message: 'No user found' });
